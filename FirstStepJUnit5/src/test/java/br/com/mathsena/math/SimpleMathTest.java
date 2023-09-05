@@ -118,9 +118,17 @@ public class SimpleMathTest {
         assertNotNull(actual);
     }
 
-    @Disabled("TODO Implement this...")
+    @Test
+    @DisplayName("Test testDivisionByZero")
     void testDivisionByZero() throws Exception {
-        fail();
+        LOGGER.info("Running testDivisionByZero...");
+        double first = 15.2D;
+        double second = 0.0D;
+
+        assertThrows(ArithmeticException.class, ()->{
+            math.division(first, second);
+        });
+
     }
 
 
