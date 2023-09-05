@@ -2,6 +2,7 @@ package br.com.mathsena.math;
 
 import br.com.mathsena.SimpleMath;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -115,6 +116,11 @@ public class SimpleMathTest {
                 " should be " + expected);
         assertNotEquals(9.2, actual, DELTA);
         assertNotNull(actual);
+    }
+
+    @Disabled("TODO Implement this...")
+    void testDivisionByZero() throws Exception {
+        fail();
     }
 
 
