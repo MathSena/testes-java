@@ -3,17 +3,16 @@
   <component name="CompilerConfiguration">
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/FirstStepJUnit5/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/TDD/src/main/resources/archetype-resources" includeSubdirectories="true" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="TDD" />
         <module name="FirstStepJUnit5" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FirstStepJUnit5" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
