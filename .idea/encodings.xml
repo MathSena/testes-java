@@ -3,5 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/TDD/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/TDD/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestWithMockito/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/TestWithMockito/src/main/resources" charset="UTF-8" />
   </component>
 </project>
