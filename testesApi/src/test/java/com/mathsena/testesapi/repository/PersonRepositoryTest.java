@@ -98,6 +98,33 @@ class PersonRepositoryTest {
         assertEquals("DeLonge", updatedPerson.getLastName());
     }
 
+    @DisplayName("Testing deleted Person method on Person Repository")
+    @Test
+    void deletePersonRepositoryTest() {
+
+        personRepository.deleteById(person1.getId());
+        Optional<Person> personOptional = personRepository.findById(person1.getId());
+        assertTrue(personOptional.isEmpty());
+
+    }
+
+    @DisplayName("Testing findByNameAndLastName method on Person Repository")
+    @Test
+    void findByFirstNameAndLastNamePersonRepositoryTest() {
+        // When
+        String firstName = "Matheus";
+        String lastName = "Sena";
+
+        Person savedPerson = personRepository.findByJPQL(firstName, lastName);
+
+        //Then
+        assertNotNull(savedPerson);
+        assertEquals(person1.getId(), savedPerson.getId());
+
+    }
+
+
+
 
 
 }
