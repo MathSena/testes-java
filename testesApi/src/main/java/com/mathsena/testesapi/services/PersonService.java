@@ -8,66 +8,63 @@ import java.util.logging.Logger;
 import com.mathsena.testesapi.exception.ResourceNotFoundException;
 import com.mathsena.testesapi.models.Person;
 import com.mathsena.testesapi.repository.PersonRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
- class PersonService {
+@Slf4j
+public class PersonService {
 
-    private Logger logger = Logger.getLogger(PersonService.class.getName());
+    private final PersonRepository repository;
 
     @Autowired
-    PersonRepository repository;
+    public PersonService(PersonRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Person> findAll() {
-
-        logger.info("Finding all people!");
-
+        log.info("Fetching all people from the database.");
         return repository.findAll();
     }
 
     public Person findById(Long id) {
-
-        logger.info("Finding one person!");
-
+        log.info("Fetching person with ID: {}", id);
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for ID: " + id));
     }
 
     public Person create(Person person) {
-
-        logger.info("Creating one person!");
+        log.info("Creating a new person with e-mail: {}", person.getEmail());
 
         Optional<Person> savedPerson = repository.findByEmail(person.getEmail());
-        if(savedPerson.isPresent()) {
+        if (savedPerson.isPresent()) {
             throw new ResourceNotFoundException(
-                    "Person already exist with given e-Mail: " + person.getEmail());
+                    "Person already exists with given e-Mail: " + person.getEmail());
         }
         return repository.save(person);
     }
 
     public Person update(Person person) {
-
-        logger.info("Updating one person!");
+        log.info("Updating person with ID: {}", person.getId());
 
         var entity = repository.findById(person.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for ID: " + person.getId()));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        return repository.save(entity);
     }
 
     public void delete(Long id) {
-
-        logger.info("Deleting one person!");
+        log.info("Deleting person with ID: {}", id);
 
         var entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for ID: " + id));
         repository.delete(entity);
     }
 }
