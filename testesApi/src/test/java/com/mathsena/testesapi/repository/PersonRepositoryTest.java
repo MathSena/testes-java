@@ -68,4 +68,17 @@ class PersonRepositoryTest {
         Person personReturned = personReturnedOpt.get();
         assertEquals(person1.getId(), personReturned.getId());
     }
+
+
+    @DisplayName("Testing findByEmail method on Person Repository")
+    @Test
+    void findByEmailPersonRepositoryTest() {
+        // When
+        Optional<Person> personMail = personRepository.findByEmail(person1.getEmail());
+
+        //Then
+        assertTrue(personMail.isPresent());
+        Person personReturned = personMail.get();
+        assertEquals(person1.getId(), personReturned.getId());
+    }
 }
