@@ -81,4 +81,23 @@ class PersonRepositoryTest {
         Person personReturned = personMail.get();
         assertEquals(person1.getId(), personReturned.getId());
     }
+
+    @DisplayName("Testing update Person method on Person Repository")
+    @Test
+    void updatePersonRepositoryTest() {
+        // When
+        Person savedPerson = personRepository.findById(person1.getId()).get();
+        savedPerson.setFirstName("Tom");
+        savedPerson.setLastName("DeLonge");
+
+        Person updatedPerson = personRepository.save(savedPerson);
+
+        //Then
+        assertNotNull(updatedPerson);
+        assertEquals("Tom", updatedPerson.getFirstName());
+        assertEquals("DeLonge", updatedPerson.getLastName());
+    }
+
+
+
 }
