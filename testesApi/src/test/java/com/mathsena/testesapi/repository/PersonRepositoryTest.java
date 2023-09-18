@@ -123,6 +123,21 @@ class PersonRepositoryTest {
 
     }
 
+    @DisplayName("Testing findByNameAndLastName method with Parameters on Person Repository")
+    @Test
+    void findByFirstNameAndLastNameWithParametersPersonRepositoryTest() {
+        // When
+        String firstName = "Matheus";
+        String lastName = "Sena";
+
+        Person savedPerson = personRepository.findByJPQLWithNamedParameter(firstName, lastName);
+
+        //Then
+        assertNotNull(savedPerson);
+        assertEquals(person1.getId(), savedPerson.getId());
+
+    }
+
 
 
 
